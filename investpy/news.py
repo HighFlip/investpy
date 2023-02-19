@@ -272,7 +272,7 @@ def economic_calendar(
 
                 time = (
                     zone
-                ) = currency = sentiment = event = actual = forecast = previous = None
+                ) = currency = sentiment = event = actual = forecast = previous = link = None
 
                 if row.get("id").__contains__("eventRowId_"):
                     for value in row.xpath("td"):
@@ -290,6 +290,7 @@ def economic_calendar(
                                 )
                         elif value.get("class") == "left event":
                             event = value.text_content().strip()
+                            link = value.xpath("a")[0].get("href")
                         elif value.get("id") == "eventActual_" + id_:
                             actual = value.text_content().strip()
                         elif value.get("id") == "eventForecast_" + id_:
@@ -311,6 +312,7 @@ def economic_calendar(
                         "actual": None if actual == "" else actual,
                         "forecast": None if forecast == "" else forecast,
                         "previous": None if previous == "" else previous,
+                        "link": link,
                     }
                 )
 
