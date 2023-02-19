@@ -290,7 +290,11 @@ def economic_calendar(
                                 )
                         elif value.get("class") == "left event":
                             event = value.text_content().strip()
-                            link = value.xpath("a")[0].get("href")
+                            try:
+                                link = value.find("a").get("href")
+                            except:
+                                link = None
+                            
                         elif value.get("id") == "eventActual_" + id_:
                             actual = value.text_content().strip()
                         elif value.get("id") == "eventForecast_" + id_:
