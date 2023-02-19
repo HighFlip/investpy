@@ -1,6 +1,6 @@
 # Copyright 2018-2021 Alvaro Bartolome, alvarobartt @ GitHub
 # See LICENSE for details.
-
+import cfscraper
 from datetime import datetime
 from random import choice
 from time import gmtime, localtime, strftime
@@ -244,9 +244,9 @@ def economic_calendar(
 
     id_, last_id = 0, 0
     results = list()
-
+    scraper = cfscrape.create_scraper()
     while True:
-        req = requests.post(url, headers=headers, data=data)
+        req = scraper.post(url, headers=headers, data=data)
 
         root = fromstring(req.json()["data"])
         table = root.xpath(".//tr")
