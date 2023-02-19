@@ -1,6 +1,6 @@
 # Copyright 2018-2021 Alvaro Bartolome, alvarobartt @ GitHub
 # See LICENSE for details.
-import cfscraper
+import cfscrape
 from datetime import datetime
 from random import choice
 from time import gmtime, localtime, strftime
